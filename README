@@ -1,0 +1,14 @@
+Optimum Threshold 
+
+This is a program to find optimum threshold from a given text file which has the gray value of pixels stored in it. The file is given as arguments from command line to the program. 
+This program uses two approches to find optimum threshold - iterative and histogram also known as hashing method.The second method is more efficient and faster
+
+The executable files are stored in the bin folder under the name "optimum_threshold.out"
+
+The headerfiles are stored in include
+
+The sourcecode can be read from src folder
+
+The results of the calculations for optimum threshold are stored in results for each method seperately along with graphs
+
+The raw data i.e. text files with gray values are stored in data/txt folder

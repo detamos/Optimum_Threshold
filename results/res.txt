@@ -1,0 +1,12 @@
+Time taken for taking input : 12129.356000 ms
+Iterative thresholding took 534866.929000 ms
+Optimum Threshold = 0
+Efficient thresholding took 801.223000 ms
+Optimum Threshold = 0
+
+
+
+As we can see both the methods are generating same optimum value
+
+Our task in the question was to find the optimum threshold, which basically divides our image in two parts fore ground and background
+So we have found an optimum threshold for our problem for which the number of pixels with gray value less than our threshold is equal to the number of pixels with gray value greater than our threshold

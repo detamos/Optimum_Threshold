@@ -1,0 +1,38 @@
+#ifndef GNU_PLOT_H
+#define GNU_PLOT_H
+
+#include<stdio.h>
+#include<string.h>
+#define okay 1;
+#define error 0;
+
+FILE *gnuplotPipe = NULL;
+
+int gnu_init(char *filename);
+{	
+	gnuplotPipe = popen("gnuplot - persistent","w");
+	if(gnuplotPipe == NULL)
+		return(error);
+	else
+		return(okay);
+}
+
+void plot(char *title,char *xlabel,char *ylabel)
+{
+	
+}
+
+inline void command(char *command)
+{
+	FILE *gnuplotPipe = NULL;
+	gnuplotPipe = popen("gnuplot -persistent","w");
+	fprintf(gnuplotPipe,"%s\n",command);
+	pclose(gnuplotPipe);
+}
+
+void gnu_end(char *filename)
+{
+	pclose(gnuplotPipe);
+	gnuplotPipe = NULL;
+}
+#endif GNU_PLOT_H

@@ -1,0 +1,46 @@
+#include<time.h>
+#include<stdio.h>
+#include"iterative.c"
+#include"efficient.c"
+#include"gnuplot.c"
+
+void OPT_Thresh(int **pixels,int row,int col)
+{
+	clock_t start,end;
+	int opt_th;
+	double time;
+	
+	FILE *resTXT = NULL;
+	resTXT = fopen("../results/res.txt","a");
+	
+	printf("\nPerforming iterative thesholding ......\n");
+	start = clock();
+	opt_th = iterative(pixels,row,col);
+	end = clock();
+	time  = (double)(end-start)/CLOCKS_PER_SEC;
+	
+	printf("Thresholding done in %lf ms\n",(time*1000));
+	fprintf(resTXT,"Iterative thresholding took %lf ms\n",(time*1000));
+	fprintf(resTXT,"Optimum Threshold = %d\n",opt_th);
+	printf("result.dat is generated at <../results/iterative>\n\n");
+	
+	gnuplot("../results/iterative/result.dat","../results/iterative/graphs");
+	printf("Graphs are generated at <../results/iterative/graphs>\n");
+
+	printf("\nPerforming thesholding using cumulative histogram ......\n");
+	start = clock();
+	opt_th = efficient(pixels,row,col);
+	end = clock();
+	time = (double)(end-start)/CLOCKS_PER_SEC;
+	fprintf(resTXT,"Efficient thresholding took %lf ms\n",(time*1000));
+	fprintf(resTXT,"Optimum Threshold = %d\n",opt_th);
+	printf("Thresholding done in %lf ms\n",(time*1000));
+	printf("result.dat is generated at <../results/efficient>\n");
+	
+	gnuplot("../results/efficient/result.dat","../results/efficient/graphs");
+	printf("Graphs are generated at <../results/efficient/graphs>\n");
+	
+	printf("\nFinal res.txt is generated at <../results>\n\n");
+	
+	fclose(resTXT);
+}
